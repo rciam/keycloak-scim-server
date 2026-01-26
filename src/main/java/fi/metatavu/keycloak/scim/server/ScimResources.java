@@ -56,9 +56,15 @@ public class ScimResources {
     public Response listRealmUsers(
         @Context KeycloakSession session,
         @QueryParam("filter") String filter,
-        @QueryParam("startIndex") @DefaultValue("0") Integer startIndex,
-        @QueryParam("count") @DefaultValue("100") Integer count
+        @QueryParam("startIndex") @DefaultValue("1") int startIndex,
+        @QueryParam("count") @DefaultValue("100") int count
     ) {
+        if (count < 0) {
+            count = 0;
+        }
+        if (startIndex < 1) {
+            startIndex = 1;
+        }
         RealmScimContext scimContext = realmScimServer.getScimContext(session);
         realmScimServer.verifyPermissions(scimContext);
 
@@ -73,7 +79,7 @@ public class ScimResources {
         return realmScimServer.listUsers(
             scimContext,
             scimFilter,
-            startIndex,
+            startIndex-1,
             count
         );
     }
@@ -173,15 +179,21 @@ public class ScimResources {
     @SuppressWarnings("unused")
     public Response listRealmGroups(
             @Context KeycloakSession session,
-            @QueryParam("startIndex") @DefaultValue("0") int startIndex,
+            @QueryParam("startIndex") @DefaultValue("1") int startIndex,
             @QueryParam("count") @DefaultValue("100") int count
     ) {
+        if (count < 0) {
+            count = 0;
+        }
+        if (startIndex < 1) {
+            startIndex = 1;
+        }
         RealmScimContext scimContext = realmScimServer.getScimContext(session);
         realmScimServer.verifyPermissions(scimContext);
 
         return realmScimServer.listGroups(
                 scimContext,
-                startIndex,
+                startIndex-1,
                 count
         );
     }
@@ -364,9 +376,15 @@ public class ScimResources {
             @Context KeycloakSession session,
             @PathParam("organizationId") String organizationId,
             @QueryParam("filter") String filter,
-            @QueryParam("startIndex") @DefaultValue("0") Integer startIndex,
-            @QueryParam("count") @DefaultValue("100") Integer count
+            @QueryParam("startIndex") @DefaultValue("1") int startIndex,
+            @QueryParam("count") @DefaultValue("100") int count
     ) {
+        if (count < 0) {
+            count = 0;
+        }
+        if (startIndex < 1) {
+            startIndex = 1;
+        }
         OrganizationScimContext scimContext = organizationScimServer.getScimContext(session, organizationId);
         organizationScimServer.verifyPermissions(scimContext);
 
@@ -381,7 +399,7 @@ public class ScimResources {
         return organizationScimServer.listUsers(
             scimContext,
             scimFilter,
-            startIndex,
+            startIndex-1,
             count
         );
     }
@@ -487,15 +505,21 @@ public class ScimResources {
     public Response listOrganizationGroups(
             @Context KeycloakSession session,
             @PathParam("organizationId") String organizationId,
-            @QueryParam("startIndex") @DefaultValue("0") int startIndex,
+            @QueryParam("startIndex") @DefaultValue("1") int startIndex,
             @QueryParam("count") @DefaultValue("100") int count
     ) {
+        if (count < 0) {
+            count = 0;
+        }
+        if (startIndex < 1) {
+            startIndex = 1;
+        }
         OrganizationScimContext scimContext = organizationScimServer.getScimContext(session, organizationId);
         organizationScimServer.verifyPermissions(scimContext);
 
         return organizationScimServer.listGroups(
             scimContext,
-            startIndex,
+            startIndex-1,
             count
         );
     }
