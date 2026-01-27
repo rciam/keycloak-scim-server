@@ -306,8 +306,8 @@ public class OrganizationUserController extends UsersController  {
         OrganizationScimContext scimContext,
         ScimFilter scimFilter,
         UserAttributes userAttributes,
-        Integer firstResult,
-        Integer maxResults
+        int firstResult,
+        int maxResults
     ) {
         fi.metatavu.keycloak.scim.server.model.UsersList result = new fi.metatavu.keycloak.scim.server.model.UsersList();
         RealmModel realm = scimContext.getRealm();
@@ -331,7 +331,7 @@ public class OrganizationUserController extends UsersController  {
 
         result.setTotalResults(filteredUsers.size());
         result.setResources(users);
-        result.setStartIndex(firstResult);
+        result.setStartIndex(firstResult+1);
         result.setItemsPerPage(maxResults);
 
         return result;

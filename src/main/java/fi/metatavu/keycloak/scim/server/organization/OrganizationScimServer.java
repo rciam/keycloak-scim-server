@@ -135,7 +135,7 @@ public class OrganizationScimServer extends AbstractScimServer<OrganizationScimC
     }
 
     @Override
-    public Response listUsers(OrganizationScimContext scimContext, ScimFilter scimFilter, Integer startIndex, Integer count) {
+    public Response listUsers(OrganizationScimContext scimContext, ScimFilter scimFilter, int startIndex, int count) {
         UserAttributes userAttributes = metadataController.getUserAttributes(scimContext);
 
         fi.metatavu.keycloak.scim.server.model.UsersList usersList = organizationUserController.listOrganizationUsers(

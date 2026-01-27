@@ -104,7 +104,7 @@ public class GroupsController extends AbstractController {
 
         GroupsList result = new GroupsList();
         result.setTotalResults(allGroups.size());
-        result.setStartIndex(startIndex);
+        result.setStartIndex(startIndex+1);
         result.setItemsPerPage(count);
         result.setResources(groups);
         result.setSchemas(Collections.singletonList("urn:ietf:params:scim:api:messages:2.0:ListResponse"));

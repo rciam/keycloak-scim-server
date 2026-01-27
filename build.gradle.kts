@@ -94,7 +94,8 @@ val generateModelsCode = tasks.register("generateModelsCode", GenerateTask::clas
     setProperty("outputDir", "$buildDir/generated/scim-models")
     setProperty("modelPackage", "${project.group}.model")
 
-    this.configOptions.put("dateLibrary", "string")
+    this.typeMappings.put("date-time", "OffsetDateTime")
+    this.importMappings.put("OffsetDateTime", "java.time.OffsetDateTime")
     this.configOptions.put("collectionType", "array")
     this.configOptions.put("serializationLibrary", "jackson")
     this.configOptions.put("enumPropertyNaming", "UPPERCASE")
@@ -120,7 +121,8 @@ val generateScimClientCode = tasks.register("generateScimClientCode",GenerateTas
     setProperty("apiPackage", "${project.group}.test.client.api")
     setProperty("modelPackage", "${project.group}.test.client.model")
 
-    this.configOptions.put("dateLibrary", "string")
+    this.typeMappings.put("date-time", "OffsetDateTime")
+    this.importMappings.put("OffsetDateTime", "java.time.OffsetDateTime")
     this.configOptions.put("collectionType", "array")
     this.configOptions.put("serializationLibrary", "jackson")
     this.configOptions.put("enumPropertyNaming", "UPPERCASE")
