@@ -1,5 +1,7 @@
 package fi.metatavu.keycloak.scim.server;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
@@ -9,8 +11,8 @@ import java.util.Date;
  */
 public class AbstractController {
 
-    private final Date createdAt = getDate(2025, 3, 26);
-    private final Date lastModifiedAt = getDate(2025, 3, 27);
+    private final OffsetDateTime createdAt = getDate(2025, 3, 26);
+    private final OffsetDateTime lastModifiedAt = getDate(2025, 3, 27);
 
     /**
      * Returns meta object
@@ -42,8 +44,10 @@ public class AbstractController {
      * @return date
      */
     @SuppressWarnings("SameParameterValue")
-    private Date getDate(int year, int month, int date) {
-        return Date.from(OffsetDateTime.of(year, month, date, 0, 0, 0, 0, ZoneOffset.UTC).toInstant());
+    private OffsetDateTime getDate(int year, int month, int date) {
+        return LocalDate
+                .of(year, month, date)
+                .atStartOfDay(ZoneOffset.UTC) // ZonedDateTime
+                .toOffsetDateTime();          // convert to OffsetDateTime
     }
-
 }

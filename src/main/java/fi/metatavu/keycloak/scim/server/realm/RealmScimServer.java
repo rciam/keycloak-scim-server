@@ -133,7 +133,7 @@ public class RealmScimServer extends AbstractScimServer<RealmScimContext> {
     }
 
     @Override
-    public Response listUsers(RealmScimContext scimContext, ScimFilter scimFilter, Integer startIndex, Integer count) {
+    public Response listUsers(RealmScimContext scimContext, ScimFilter scimFilter, int startIndex, int count) {
         UserAttributes userAttributes = metadataController.getUserAttributes(scimContext);
 
         fi.metatavu.keycloak.scim.server.model.UsersList usersList = usersController.listUsers(

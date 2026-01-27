@@ -34,8 +34,8 @@ public interface ScimServer <T extends ScimContext> {
     Response listUsers(
         T scimContext,
         ScimFilter scimFilter,
-        Integer startIndex,
-        Integer count
+        int startIndex,
+        int count
     );
 
     /**

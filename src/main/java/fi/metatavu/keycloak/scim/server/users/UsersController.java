@@ -151,8 +151,8 @@ public class UsersController extends AbstractController {
         ScimContext scimContext,
         ScimFilter scimFilter,
         UserAttributes userAttributes,
-        Integer firstResult,
-        Integer maxResults
+        int firstResult,
+        int maxResults
     ) {
         UsersList result = new UsersList();
         RealmModel realm = scimContext.getRealm();
@@ -196,7 +196,7 @@ public class UsersController extends AbstractController {
 
         result.setTotalResults(filteredUsers.size());
         result.setResources(users);
-        result.setStartIndex(firstResult);
+        result.setStartIndex(firstResult+1);
         result.setItemsPerPage(maxResults);
 
         return result;
