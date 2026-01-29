@@ -906,9 +906,7 @@ components:
           example: "ServiceProviderConfig"
         created:
           type: string
-          format: date-time
           example: "2010-01-23T04:56:22Z"
         lastModified:
           type: string
-          format: date-time
           example: "2011-05-13T04:42:34Z"

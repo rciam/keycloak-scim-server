@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -11,8 +12,8 @@ import java.util.Date;
  */
 public class AbstractController {
 
-    private final OffsetDateTime createdAt = getDate(2025, 3, 26);
-    private final OffsetDateTime lastModifiedAt = getDate(2025, 3, 27);
+    private final String createdAt =  DateTimeFormatter.ISO_INSTANT.format(Instant.now());
+    private final String lastModifiedAt = DateTimeFormatter.ISO_INSTANT.format(Instant.now());
 
     /**
      * Returns meta object
@@ -33,21 +34,5 @@ public class AbstractController {
         result.setResourceType(resourceType);
         result.setLocation(scimContext.getServerBaseUri().resolve(resourcePath));
         return result;
-    }
-
-    /**
-     * Returns date based on year, month and date
-     *
-     * @param year year
-     * @param month month
-     * @param date date
-     * @return date
-     */
-    @SuppressWarnings("SameParameterValue")
-    private OffsetDateTime getDate(int year, int month, int date) {
-        return LocalDate
-                .of(year, month, date)
-                .atStartOfDay(ZoneOffset.UTC) // ZonedDateTime
-                .toOffsetDateTime();          // convert to OffsetDateTime
     }
 }
