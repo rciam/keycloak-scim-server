@@ -555,7 +555,7 @@ public class UsersController extends AbstractController {
                         .value(user.getEmail())
                         .primary(true)
                 ))
-                .meta(getMeta(scimContext, "User", String.format("Users/%s", user.getId())))
+                .meta(getMeta(scimContext, "User", String.format("Users/%s", user.getId()), user.getCreatedTimestamp(), user.getCreatedTimestamp()))
                 .schemas(Collections.singletonList(Schemas.USER_SCHEMA))
                 .name(new fi.metatavu.keycloak.scim.server.model.UserName()
                         .familyName(user.getLastName())
